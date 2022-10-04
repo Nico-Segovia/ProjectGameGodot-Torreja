@@ -1,2 +1,2 @@
 # ProyectTorreja
-First video game project, developed with Godot
+First video game project (Not finished), developed with Godot
