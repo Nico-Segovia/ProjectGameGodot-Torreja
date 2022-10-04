@@ -1,0 +1,42 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://Recursos/Background/Fondos-de-pantalla-HD-full.jpg" type="Texture" id=1]
+[ext_resource path="res://Juego/Objetos/PlataformaImpulsora.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Juego/Personaje/PP.tscn" type="PackedScene" id=3]
+
+[node name="PlataformaTemporal" type="Node"]
+
+[node name="Fondos-de-pantalla-HD-full" type="Sprite" parent="."]
+position = Vector2( 741.452, 692.233 )
+scale = Vector2( 1.5, 1.5 )
+texture = ExtResource( 1 )
+
+[node name="PlataformaImpulsora" parent="." instance=ExtResource( 2 )]
+position = Vector2( 584.105, 493.458 )
+
+[node name="PlataformaImpulsora2" parent="." instance=ExtResource( 2 )]
+position = Vector2( 706.91, 509.477 )
+
+[node name="PlataformaImpulsora3" parent="." instance=ExtResource( 2 )]
+position = Vector2( 829.716, 528.164 )
+
+[node name="PlataformaImpulsora4" parent="." instance=ExtResource( 2 )]
+position = Vector2( 971.209, 554.861 )
+
+[node name="PlataformaImpulsora5" parent="." instance=ExtResource( 2 )]
+position = Vector2( 463.969, 517.486 )
+
+[node name="PlataformaImpulsora6" parent="." instance=ExtResource( 2 )]
+position = Vector2( 346.503, 546.852 )
+
+[node name="PlataformaImpulsora7" parent="." instance=ExtResource( 2 )]
+position = Vector2( 226.368, 573.549 )
+
+[node name="PlataformaImpulsora8" parent="." instance=ExtResource( 2 )]
+position = Vector2( 116.911, 608.255 )
+
+[node name="PlataformaImpulsora9" parent="." instance=ExtResource( 2 )]
+position = Vector2( 1091.34, 589.567 )
+
+[node name="PP" parent="." instance=ExtResource( 3 )]
+position = Vector2( 574.7, 427.365 )

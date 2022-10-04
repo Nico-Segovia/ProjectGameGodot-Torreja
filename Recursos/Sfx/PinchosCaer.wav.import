@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/PinchosCaer.wav-d117707e4182a2ffcdc0098e0b9f9d5a.sample"
+
+[deps]
+
+source_file="res://Recursos/Sfx/PinchosCaer.wav"
+dest_files=[ "res://.import/PinchosCaer.wav-d117707e4182a2ffcdc0098e0b9f9d5a.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

@@ -1,0 +1,108 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://Recursos/Environment/ground_wood_broken.png" type="Texture" id=1]
+[ext_resource path="res://Recursos/Environment/grass_brown1.png" type="Texture" id=2]
+[ext_resource path="res://Recursos/Environment/grass2.png" type="Texture" id=3]
+[ext_resource path="res://Juego/Objetos/PlataformaTrampa.gd" type="Script" id=4]
+[ext_resource path="res://Recursos/Sfx/PlataformaTampa.wav" type="AudioStream" id=5]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 114.416, 10 )
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 114.145, 1.01507 )
+
+[sub_resource type="Animation" id=3]
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 1 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ), Vector2( -8, 0 ), Vector2( 8, 0 ), Vector2( -6, 0 ), Vector2( 5, 0 ), Vector2( -9, 0 ), Vector2( 6, 0 ), Vector2( -7, 0 ), Vector2( 5, 0 ), Vector2( 0, 500 ) ]
+}
+tracks/1/type = "method"
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0.8, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"values": [ {
+"args": [  ],
+"method": "deshabilitar_colisionador"
+}, {
+"args": [  ],
+"method": "queue_free"
+} ]
+}
+tracks/2/type = "audio"
+tracks/2/path = NodePath("AudioStreamPlayer2D")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"clips": [ {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource( 5 )
+} ],
+"times": PoolRealArray( 0 )
+}
+
+[node name="PlataformaTrampa" type="StaticBody2D"]
+z_index = 40
+z_as_relative = false
+collision_layer = 4
+collision_mask = 10
+script = ExtResource( 4 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="."]
+scale = Vector2( 0.6, 0.6 )
+texture = ExtResource( 1 )
+
+[node name="grass2" type="Sprite" parent="Sprite"]
+position = Vector2( 101.211, -81.556 )
+z_index = 39
+z_as_relative = false
+texture = ExtResource( 3 )
+
+[node name="grass_brown1" type="Sprite" parent="Sprite"]
+position = Vector2( 127.954, -75.0552 )
+z_index = 39
+z_as_relative = false
+texture = ExtResource( 2 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( 0, -17.3725 )
+shape = SubResource( 1 )
+
+[node name="Colisionador" type="CollisionPolygon2D" parent="."]
+polygon = PoolVector2Array( 114.235, -7.91608, 95.2072, 20.6249, -96, 28, -114.688, -8.51069, 113.971, -8.19107 )
+
+[node name="DetectorPersonaje" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DetectorPersonaje"]
+position = Vector2( 0, -29.184 )
+shape = SubResource( 2 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/caer = SubResource( 3 )
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 5 )
+bus = "SFXEntorno"
+
+[connection signal="body_entered" from="DetectorPersonaje" to="." method="_on_DetectorPersonaje_body_entered"]

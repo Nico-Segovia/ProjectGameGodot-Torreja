@@ -1,0 +1,329 @@
+[gd_scene load_steps=22 format=2]
+
+[ext_resource path="res://Recursos/Players/Poses HD/character_malePerson_run0.png" type="Texture" id=1]
+[ext_resource path="res://Juego/Personaje/PP.gd" type="Script" id=2]
+[ext_resource path="res://Recursos/Players/Poses HD/character_malePerson_side.png" type="Texture" id=3]
+[ext_resource path="res://Recursos/Players/Poses HD/character_malePerson_idle.png" type="Texture" id=4]
+[ext_resource path="res://Recursos/Players/Poses HD/character_malePerson_wide.png" type="Texture" id=5]
+[ext_resource path="res://Recursos/Players/Poses HD/character_malePerson_run1.png" type="Texture" id=6]
+[ext_resource path="res://Recursos/Players/Poses HD/character_malePerson_run2.png" type="Texture" id=7]
+[ext_resource path="res://Recursos/Players/Poses HD/character_malePerson_hit.png" type="Texture" id=8]
+[ext_resource path="res://Recursos/Items/jetpack.png" type="Texture" id=9]
+[ext_resource path="res://Recursos/Particles/flame.png" type="Texture" id=10]
+[ext_resource path="res://Recursos/Players/Poses HD/character_malePerson_hurt.png" type="Texture" id=11]
+[ext_resource path="res://Recursos/Sfx/Jump 1.wav" type="AudioStream" id=13]
+[ext_resource path="res://Recursos/Players/Poses HD/character_malePerson_fall.png" type="Texture" id=15]
+
+[sub_resource type="GDScript" id=1]
+script/source = "extends Camera2D
+
+
+func _ready():
+	pass
+"
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 40, 80 )
+
+[sub_resource type="SpriteFrames" id=3]
+animations = [ {
+"frames": [ ExtResource( 4 ), ExtResource( 4 ), ExtResource( 4 ), ExtResource( 4 ), ExtResource( 4 ), ExtResource( 5 ), ExtResource( 5 ), ExtResource( 5 ), ExtResource( 3 ) ],
+"loop": false,
+"name": "Idle",
+"speed": 2.0
+}, {
+"frames": [ ExtResource( 1 ), ExtResource( 6 ), ExtResource( 7 ) ],
+"loop": true,
+"name": "Correr",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 8 ) ],
+"loop": false,
+"name": "Colicion_Techo",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 15 ) ],
+"loop": true,
+"name": "Caer",
+"speed": 5.0
+} ]
+
+[sub_resource type="Animation" id=7]
+resource_name = "aclarar"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/path = NodePath("CanvasLayer/ColorRect:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("CanvasLayer/ColorRect:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
+}
+
+[sub_resource type="Animation" id=4]
+resource_name = "default"
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("PPJet:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("AnimatedSprite:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+
+[sub_resource type="Animation" id=5]
+resource_name = "entrar_portal"
+tracks/0/type = "value"
+tracks/0/path = NodePath("AnimatedSprite:rotation_degrees")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 0.0, 360.0 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("AnimatedSprite:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 1, 1 ), Vector2( 0, 0 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath(".:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
+}
+
+[sub_resource type="Animation" id=8]
+resource_name = "oscurecer"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/path = NodePath("CanvasLayer/ColorRect:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("CanvasLayer/ColorRect:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
+}
+
+[sub_resource type="Animation" id=6]
+length = 2.0
+loop = true
+step = 0.2
+tracks/0/type = "value"
+tracks/0/path = NodePath("PPJet:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("PPJet/Jetpack/FireIzq:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.2, 0.4, 0.6, 0.8, 1, 1.2, 1.4, 1.6, 1.8, 2 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ true, true, false, true, true, false, false, true, true, true, false ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("PPJet/Jetpack/FireDer:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.2, 0.4, 0.6, 0.8, 1, 1.2, 1.4, 1.6, 1.8, 2 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ true, true, false, true, true, false, true, false, false, true, false ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("AnimatedSprite:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
+
+[node name="PP" type="KinematicBody2D" groups=[
+"jugador",
+]]
+position = Vector2( 0, -1.41581 )
+rotation = 6.28319
+scale = Vector2( 0.6, 0.6 )
+z_index = 100
+z_as_relative = false
+collision_layer = 2
+collision_mask = 29
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_group_": true
+}
+velocidad = Vector2( 300, 400 )
+acel_caida = 400
+fuerza_salto = 3200
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2( 0, -128.5 )
+current = true
+limit_left = 0
+limit_bottom = 1250
+drag_margin_h_enabled = true
+drag_margin_v_enabled = true
+drag_margin_left = 0.01
+drag_margin_top = 1.0
+drag_margin_right = 0.1
+script = SubResource( 1 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( 0, -80 )
+shape = SubResource( 2 )
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+position = Vector2( 0, -128.5 )
+frames = SubResource( 3 )
+animation = "Colicion_Techo"
+
+[node name="AudioSalto" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 13 )
+volume_db = -4.888
+bus = "SFXPP"
+
+[node name="EnfriamientoPowerUpVolar" type="Timer" parent="."]
+wait_time = 1.5
+one_shot = true
+
+[node name="EnfriamientoPowerUpSalto" type="Timer" parent="."]
+wait_time = 1.5
+one_shot = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+autoplay = "default"
+anims/aclarar = SubResource( 7 )
+anims/default = SubResource( 4 )
+anims/entrar_portal = SubResource( 5 )
+anims/oscurecer = SubResource( 8 )
+anims/volar = SubResource( 6 )
+
+[node name="PPJet" type="Sprite" parent="."]
+visible = false
+position = Vector2( 1.11237, -124.51 )
+z_index = 100
+z_as_relative = false
+texture = ExtResource( 11 )
+
+[node name="Jetpack" type="Sprite" parent="PPJet"]
+position = Vector2( -1.11237, 57.8431 )
+scale = Vector2( 0.5, 0.5 )
+z_index = 100
+texture = ExtResource( 9 )
+
+[node name="FireIzq" type="Sprite" parent="PPJet/Jetpack"]
+position = Vector2( -40.2567, 103.295 )
+scale = Vector2( 0.6, 0.6 )
+z_index = 101
+z_as_relative = false
+texture = ExtResource( 10 )
+
+[node name="FireDer" type="Sprite" parent="PPJet/Jetpack"]
+position = Vector2( 42.0833, 103.333 )
+scale = Vector2( 0.6, 0.6 )
+z_index = 101
+texture = ExtResource( 10 )
+
+[node name="Tween" type="Tween" parent="."]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
+visible = false
+modulate = Color( 1, 1, 1, 0 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0, 0, 0, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[connection signal="timeout" from="EnfriamientoPowerUpVolar" to="." method="_on_EnfriamientoPowerUpVolar_timeout"]
+[connection signal="timeout" from="EnfriamientoPowerUpSalto" to="." method="_on_EnfriamientoPowerUp_timeout"]
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]

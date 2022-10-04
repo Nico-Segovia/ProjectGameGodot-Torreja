@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://Juego/Plataforma/Plataforma.tscn" type="PackedScene" id=1]
+
+[node name="Plataforma" instance=ExtResource( 1 )]
+position = Vector2( 3014.86, 6.24023 )

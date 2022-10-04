@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/PlataformaTampa.wav-3d8a35cd7ddba0e4dc66e75eb989edcf.sample"
+
+[deps]
+
+source_file="res://Recursos/Sfx/PlataformaTampa.wav"
+dest_files=[ "res://.import/PlataformaTampa.wav-3d8a35cd7ddba0e4dc66e75eb989edcf.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

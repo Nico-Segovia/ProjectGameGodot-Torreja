@@ -1,0 +1,160 @@
+[gd_scene load_steps=16 format=2]
+
+[ext_resource path="res://Recursos/Fonts/Kenney Future Narrow.ttf" type="DynamicFontData" id=1]
+[ext_resource path="res://Recursos/Fonts/Kenney Mini Square.ttf" type="DynamicFontData" id=2]
+[ext_resource path="res://Recursos/Players/Poses HD/character_malePerson_cheer1.png" type="Texture" id=3]
+[ext_resource path="res://Juego/Menus/Botones/BotonMenu.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Juego/Menus/Botones/BotonMenu.gd" type="Script" id=5]
+[ext_resource path="res://Recursos/Botones/BotonMenu.tres" type="StyleBox" id=6]
+[ext_resource path="res://Juego/Menus/MenuVictoria.gd" type="Script" id=7]
+
+[sub_resource type="StyleBoxFlat" id=1]
+bg_color = Color( 0.231373, 0.278431, 0.227451, 0.682353 )
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+shadow_color = Color( 0.290196, 0.0980392, 0.0980392, 0.6 )
+
+[sub_resource type="StyleBoxFlat" id=2]
+bg_color = Color( 0.0196078, 0.117647, 0.0117647, 1 )
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+shadow_color = Color( 0.290196, 0.0980392, 0.0980392, 0.6 )
+
+[sub_resource type="DynamicFont" id=3]
+size = 21
+font_data = ExtResource( 1 )
+
+[sub_resource type="StyleBoxFlat" id=4]
+bg_color = Color( 0.654902, 0, 0, 0.682353 )
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+shadow_color = Color( 0.290196, 0.0980392, 0.0980392, 0.6 )
+
+[sub_resource type="StyleBoxFlat" id=5]
+bg_color = Color( 0.117647, 0.0117647, 0.0117647, 1 )
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+shadow_color = Color( 0.290196, 0.0980392, 0.0980392, 0.6 )
+
+[sub_resource type="DynamicFont" id=6]
+size = 21
+font_data = ExtResource( 1 )
+
+[sub_resource type="DynamicFont" id=7]
+size = 60
+outline_color = Color( 0.584314, 0.329412, 0.207843, 1 )
+font_data = ExtResource( 2 )
+
+[sub_resource type="DynamicFont" id=8]
+size = 50
+outline_color = Color( 0.584314, 0.329412, 0.207843, 1 )
+font_data = ExtResource( 2 )
+
+[node name="MenuVictoria" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 7 )
+__meta__ = {
+"_edit_use_anchors_": false,
+"_edit_vertical_guides_": [ 191.028 ]
+}
+
+[node name="ColorRect" type="ColorRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0.701961, 0.909804, 1, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="character_malePerson_wide" type="Sprite" parent="."]
+position = Vector2( 346.733, 335.392 )
+scale = Vector2( 1.8, 1.8 )
+texture = ExtResource( 3 )
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -590.518
+margin_top = -562.477
+margin_right = -212.518
+margin_bottom = -124.477
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HSeparator" type="HSeparator" parent="VBoxContainer"]
+margin_right = 377.0
+margin_bottom = 4.0
+
+[node name="BotonMenuPrincipal" type="Button" parent="VBoxContainer" instance=ExtResource( 4 )]
+margin_top = 8.0
+margin_right = 377.0
+margin_bottom = 217.0
+size_flags_vertical = 3
+custom_styles/hover = SubResource( 1 )
+custom_styles/pressed = SubResource( 2 )
+custom_styles/normal = ExtResource( 6 )
+custom_fonts/font = SubResource( 3 )
+text = "menu principal"
+script = ExtResource( 5 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HSeparator2" type="HSeparator" parent="VBoxContainer"]
+margin_top = 221.0
+margin_right = 377.0
+margin_bottom = 225.0
+
+[node name="BotonSalir" type="Button" parent="VBoxContainer" instance=ExtResource( 4 )]
+margin_top = 229.0
+margin_right = 377.0
+margin_bottom = 438.0
+size_flags_vertical = 3
+custom_styles/hover = SubResource( 4 )
+custom_styles/pressed = SubResource( 5 )
+custom_styles/normal = ExtResource( 6 )
+custom_fonts/font = SubResource( 6 )
+text = "salir"
+script = ExtResource( 5 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="."]
+modulate = Color( 0.126552, 0.41569, 0.121378, 1 )
+margin_left = 190.607
+margin_top = 72.4714
+margin_right = 800.607
+margin_bottom = 233.471
+custom_fonts/font = SubResource( 7 )
+text = "GANASTE ! !"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Puntaje" type="Label" parent="."]
+modulate = Color( 0.126552, 0.41569, 0.121378, 1 )
+margin_left = 195.46
+margin_top = 610.043
+margin_right = 805.46
+margin_bottom = 771.043
+custom_fonts/font = SubResource( 8 )
+text = "pUNTAJE: 12012010"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[connection signal="pressed" from="VBoxContainer/BotonMenuPrincipal" to="." method="_on_BotonMenuPrincipal_pressed"]
+[connection signal="pressed" from="VBoxContainer/BotonSalir" to="VBoxContainer/BotonSalir" method="_on_pressed"]
